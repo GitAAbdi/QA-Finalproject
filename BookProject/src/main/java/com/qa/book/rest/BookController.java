@@ -3,6 +3,7 @@ package com.qa.book.rest;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.book.entity.Book;
 import com.qa.book.services.BookService;
-
+import com.qa.book.entity.Author;
 
 
 
@@ -34,9 +35,9 @@ public class BookController {
 	        this.service = service;
 	    }
 
-//private List<Books> Bookss = new ArrayList<>();
+//private List<Book> books = new ArrayList<>();
 
-//crud starts
+
 
 //    @GetMapping("/test")
 //    public String test() {

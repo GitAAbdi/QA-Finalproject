@@ -2,17 +2,28 @@ package com.qa.book.entity;
 
 
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.qa.book.entity.Author;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
-//@Table(name = "book")
+@Table(name = "Books")
 public class Book {
 	  
+		@ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	    Set<Author> authors;
+		
 	    @Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private  long id;
@@ -32,9 +43,17 @@ public class Book {
 		    
 		    @Column
 		    private String publisher;
-
-			public Book(long id, String title, String isbn, String year, String cost, String publisher) {
+		    
+		    public Book() {
 				super();
+				
+			}
+
+		
+			public Book(Set<Author> authors, long id, String title, String isbn, String year, String cost,
+					String publisher) {
+				super();
+				this.authors = authors;
 				this.id = id;
 				this.title = title;
 				this.isbn = isbn;
@@ -42,6 +61,7 @@ public class Book {
 				this.cost = cost;
 				this.publisher = publisher;
 			}
+
 
 			public long getId() {
 				return id;
@@ -89,6 +109,16 @@ public class Book {
 
 			public void setPublisher(String publisher) {
 				this.publisher = publisher;
+			}
+
+
+			public Set<Author> getAuthors() {
+				return authors;
+			}
+
+
+			public void setAuthors(Set<Author> authors) {
+				this.authors = authors;
 			}
 		    
 		    

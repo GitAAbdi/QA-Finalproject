@@ -1,20 +1,29 @@
 package com.qa.book.entity;
 
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 
 @Entity
 
-//@Table(name = "Books")
+//@Table(name = "Authors")
 //@SecondaryTable(name = "Authors", pkJoinColumns = @PrimaryKeyJoinColumn(name = "Multiple Authors"))
 public class Author {
+
 
 	
 	@Id
@@ -34,7 +43,11 @@ public class Author {
 	    @Column
 	    private String coo;
 
-	   
+	    
+	    
+	    @JsonIgnore
+		@ManyToMany (mappedBy = "authors")
+	    Set<Book> Books;
 
 	  public Author() {
 		super();
@@ -43,14 +56,21 @@ public class Author {
 
 
 
-	public Author(long id, String fullname, String dob, String gender, String coo) {
+
+
+
+	public Author(long id, String fullname, String dob, String gender, String coo, Set<Book> books) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
 		this.dob = dob;
 		this.gender = gender;
 		this.coo = coo;
+		Books = books;
 	}
+
+
+
 
 
 

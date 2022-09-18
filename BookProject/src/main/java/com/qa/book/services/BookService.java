@@ -9,6 +9,7 @@ import javax.persistence.Column;
 
 import org.springframework.stereotype.Service;
 
+import com.qa.book.entity.Author;
 import com.qa.book.entity.Book;
 import com.qa.book.repo.BookRepo;
 
@@ -42,6 +43,7 @@ public class BookService {
         Optional<Book> existingOptional = this.repo.findById(id);
         Book existing = existingOptional.get();
 
+        existing.setAuthors(newBook.getAuthors());
         existing.setTitle(newBook.getTitle());
         existing.setIsbn(newBook.getIsbn());
         existing.setYear(newBook.getYear());
@@ -53,7 +55,9 @@ public class BookService {
         
     }
 
-    
+    public Optional<Book> findById(Long bookId) {
+    	return this.repo.findById(bookId);
+    	}
     
     //delete
     public boolean removeBooks(Long id) {

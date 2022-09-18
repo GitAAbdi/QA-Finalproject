@@ -2,6 +2,7 @@ package com.qa.book.rest;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -33,7 +34,7 @@ public class AuthorController {
 	        this.service = service;
 	    }
 
-//private List<Author> Authors = new ArrayList<>();
+private List<Author> Authors = new ArrayList<>();
 
 //crud starts
 

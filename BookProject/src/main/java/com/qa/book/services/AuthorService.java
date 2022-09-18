@@ -1,22 +1,21 @@
 package com.qa.book.services;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
-
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.qa.book.entity.Author;
 import com.qa.book.repo.AuthorRepo;
 
-
-
+@Component
 	@Service
 	public class AuthorService {
 	
-	    //private List<Author> Authors = new ArrayList<>();
+	    private List<Author> Authors = new ArrayList<>();
 		
 		
 		private AuthorRepo repo;
@@ -54,7 +53,10 @@ import com.qa.book.repo.AuthorRepo;
 	        
 	    }
 	
-	    
+	    public Optional<Author> findById(Long bookId) {
+	    	return this.repo.findById(bookId);
+	    	}
+
 	    
 	    //delete
 	    public boolean removeAuthor(Long id) {
